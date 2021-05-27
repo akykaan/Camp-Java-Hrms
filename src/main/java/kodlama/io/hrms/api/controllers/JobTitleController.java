@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.hrms.business.abstracts.JobTitleService;
+import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.entities.concretes.JobTitle;
 
 @RestController
 @RequestMapping("/api/job_titles")
 public class JobTitleController {
-	
 	
 	private JobTitleService jobTitleService;
 	
@@ -25,7 +25,7 @@ public class JobTitleController {
 
 
 	@GetMapping("/getall")
-	public List<JobTitle> getAll(){
+	public DataResult<List<JobTitle>> getAll(){
 		return this.jobTitleService.getAll();
 	}
 }

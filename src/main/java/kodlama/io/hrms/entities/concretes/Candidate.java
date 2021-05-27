@@ -9,21 +9,31 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="job_titles")
-public class JobTitle {	
+@EqualsAndHashCode(callSuper=false)
+@Table(name="candidates")
+public class Candidate extends User{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
 	private int id;
 	
-	@Column(name="title")
-	private String title;
+	@Column(name="first_name")
+	private String firstName;
 	
+	@Column(name="last_name")
+	private String lastName;
+	
+	@Column(name="identity_number")
+	private String identityNumber;
+	
+	@Column(name="birth_year")
+	private int birthYear;
 }
