@@ -15,13 +15,16 @@ public class HrmsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HrmsApplication.class, args);
+		
 	}
 
 	@Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
+          .select()
           .apis(RequestHandlerSelectors.basePackage("kodlama.io.hrms"))
           .build();                                           
     }
+	
+	
 }
