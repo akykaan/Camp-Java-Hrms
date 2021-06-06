@@ -5,10 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,20 +15,20 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="users")
-public class User {
-		
+@NoArgsConstructor
+@Table(name="images")
+public class Image {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+	@Column(name="id")
 	private int id;
 	
-	@Column(name="email")
-	private String email;
+	@Column(name="image_url")
+	private String imageUrl;
 	
-	@Column(name="password")
-	private String password;
+	@OneToOne()
+	@JoinColumn(name="cv_id")
+	private Cv cv;
 }

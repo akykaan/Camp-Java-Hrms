@@ -1,5 +1,6 @@
 package kodlama.io.hrms.business.concretes;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlama.io.hrms.business.abstracts.AuthService;
@@ -20,7 +21,7 @@ public class AuthManager implements AuthService{
 	private CandidateService candidateService;
 	private EmployerService employerService;
 	
-	
+	@Autowired
 	public AuthManager(CandidateService candidateService, EmployerService employerService) {
 		super();
 		this.candidateService = candidateService;
@@ -45,8 +46,7 @@ public class AuthManager implements AuthService{
 			   
 			   return new SuccessDataResult<Employer>(employer,"Register Success");
 			}
-			return new ErrorDataResult<Employer>(employer,"Domain not match");
-			
+			return new ErrorDataResult<Employer>(employer,"Domain not match");			
 		}
 		return new ErrorDataResult<Employer>("register failed");
 	}

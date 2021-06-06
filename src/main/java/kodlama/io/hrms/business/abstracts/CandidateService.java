@@ -10,6 +10,7 @@ import kodlama.io.hrms.entities.concretes.Candidate;
 public interface CandidateService {
 	
 	DataResult<List<Candidate>> getAll();
+	DataResult<Candidate> getById(int id);	
 	Result add(Candidate candidate);
 	//DataResult<List<Candidate>> findByEmail(String email);
 	//DataResult<List<Candidate>> findByIdentityNumber(String identity_number);

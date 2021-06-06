@@ -5,10 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,18 +17,21 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="users")
-public class User {
-		
+@Table(name="programming_language")
+public class ProgrammingLanguage {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+	@Column(name="id")
 	private int id;
+
+	@Column(name="programming_language")
+	private String programmingLanguage;
 	
-	@Column(name="email")
-	private String email;
+	@ManyToOne()
+	@JoinColumn(name="cv_id")
+	private Cv cv;
 	
-	@Column(name="password")
-	private String password;
+	//@OneToMany(mappedBy = "programmingLanguage",cascade = CascadeType.ALL)
+	//private List<Cv> cv;
 }

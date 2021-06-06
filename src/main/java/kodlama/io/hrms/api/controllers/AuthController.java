@@ -14,7 +14,8 @@ import kodlama.io.hrms.entities.concretes.Employer;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-private AuthService authService;
+	
+	private AuthService authService;
 	
 	@Autowired
 	public AuthController(AuthService authService) {

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import kodlama.io.hrms.adapters.MernisService;
 import kodlama.io.hrms.business.abstracts.CandidateService;
 import kodlama.io.hrms.business.abstracts.MailService;
@@ -24,7 +23,8 @@ public class CandidateManager implements CandidateService{
 	private MernisService mernisService;
 	
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao,MailService mailService,MernisService mernisService) {
+	public CandidateManager(CandidateDao candidateDao,MailService mailService,
+			MernisService mernisService) {
 		super();
 		this.candidateDao = candidateDao;
 		this.mailService=mailService;
@@ -54,4 +54,32 @@ public class CandidateManager implements CandidateService{
 		return new ErrorResult("gercek bir kisi giriniz!");
 		
 	}
+
+	@Override
+	public DataResult<Candidate> getById(int id) {
+		return new SuccessDataResult<Candidate>
+		(this.candidateDao.getById(id));
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
