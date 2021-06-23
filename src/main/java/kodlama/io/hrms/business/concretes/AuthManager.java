@@ -44,28 +44,33 @@ public class AuthManager implements AuthService{
 				
 			   this.employerService.add(employer);
 			   
-			   return new SuccessDataResult<Employer>(employer,"Register Success");
+			   return new SuccessDataResult<Employer>(employer,"Kayıt olundu");
 			}
-			return new ErrorDataResult<Employer>(employer,"Domain not match");			
+			return new ErrorDataResult<Employer>(employer,"Domain ile mail eslesmedi");			
 		}
-		return new ErrorDataResult<Employer>("register failed");
+		return new ErrorDataResult<Employer>("Hatalı kayıt");
 	}
 	
 	private Result confirmPass(String password,String confirmPassword) {
 		if (password.equals(confirmPassword)) {
-			return new SuccessResult("Password Eslesti");
+			return new SuccessResult("Sifreler Eslesti");
 		}
-		return new ErrorResult("Password Eslesmedi.");
+		return new ErrorResult("Sifreler Eslesmedi.");
 	}
 	
 	private Result checkEmailDomain(String email,String website) {
 		
-		String[] mail=email.split("@",2);
-		String web=website.substring(4);
+		//iletisim@firmadi.com örn mail
+		String[] mail=email.split("@",2); // limit-1 olarak calısır 2-1=1 tek @ alır
+		// mail=firmadi.com olarak gelir.
+		// website=firmadi.com 
+		// mail==website eşit ise calısır
+		String web=website.substring(4); // www kısmını silmek icin
+		
 		if(mail[1].equals(web)) {
-			return new SuccessResult("Domain Eslesti");
+			return new SuccessResult();
 		}
-		return new ErrorResult("Domain ile mail eslesmedi.");
+		return new ErrorResult();
 	}
 
 }

@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -43,29 +44,37 @@ public class JobAdvert {
 	private String cityName;
 	
 	@Column(name="open_position")
-	private String openPosition;
-	
+	private String openPosition;	
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd")
 	@Column(name="application_deadline")
 	private LocalDate applicationDeadline;
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd") // saat ve dk eklemek icin düzenleme gerekli saat olmus 02.23 bakarız bi ara
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	@Column(name="application_date")
 	private LocalDate applicationDate;
 	
 	@Column(name="is_active")
 	private boolean isActive;
 	
+	@Column(name="working_time")
+	private String workingTime;
+	
+	@Column(name="type_of_work")
+	private String typeOfWork;
+	
 	@ManyToOne()
+	@JsonIgnore
 	@JoinColumn(name="city_id")
 	private City city;
 	
 	@ManyToOne()
+	@JsonIgnore
 	@JoinColumn(name="job_title_id")
 	private JobTitle jobTitle;
 	
 	@ManyToOne()
+	@JsonIgnore
 	@JoinColumn(name="employer_id")
 	private Employer employer;
 	

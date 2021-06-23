@@ -56,6 +56,16 @@ public class JobAdvertManager implements JobAdvertService{
 	}
 
 
+	@Override
+	public Result updateById(int id) {
+		JobAdvert jobAdvertId=this.jobAdvertDao.findById(id).get();		
+		//System.out.println(jobAdvertId);
+		jobAdvertId.setActive(true);
+		this.jobAdvertDao.save(jobAdvertId);
+		return new SuccessResult("iş ilanı aktifleştirildi.");
+	}
+
+
 	
 
 }

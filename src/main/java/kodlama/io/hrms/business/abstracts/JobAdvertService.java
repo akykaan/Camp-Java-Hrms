@@ -13,5 +13,8 @@ public interface JobAdvertService {
 	DataResult<List<JobAdvert>> getAllSortedByActive();
 	DataResult<List<JobAdvert>> getAllSortedByDate();
 	
+	//Result updateById(JobAdvert jobAdvert,int id);
+	Result updateById(int id);
+	
 	
 }

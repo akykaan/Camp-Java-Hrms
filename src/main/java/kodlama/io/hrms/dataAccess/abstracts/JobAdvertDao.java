@@ -9,6 +9,8 @@ import kodlama.io.hrms.entities.concretes.JobAdvert;
 
 public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {
 	
-	@Query("From JobAdvert where isActive=true")
+	@Query("From JobAdvert where isActive=false")
 	List<JobAdvert> getByIsActive();
+	
+	
 }
