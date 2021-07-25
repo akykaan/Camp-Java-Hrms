@@ -1,8 +1,11 @@
 package kodlama.io.hrms.business.concretes;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -38,13 +41,34 @@ public class JobAdvertManager implements JobAdvertService{
 		return new SuccessDataResult<List<JobAdvert>>
 		(this.jobAdvertDao.findAll(),"is ilanları geldi.");
 	}
+	@Override
+	public DataResult<List<JobAdvert>> getAll(int pageNo, int pageSize) {		
+		Pageable pageable=PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvert>>
+		(this.jobAdvertDao.findAll(pageable).getContent(),"is ilanları geldi.");
+	}
+	
+	@Override
+	public DataResult<List<JobAdvert>> getAllKeywordAndPageable(String keyword, int pageNo, int pageSize) {		
+		Pageable pageable=PageRequest.of(pageNo-1, pageSize);
+		if(keyword!=null) {
+			return new SuccessDataResult<List<JobAdvert>>
+			(this.jobAdvertDao.searchKeywordAndPageable(keyword,pageable),"is ilanları geldi."); 
+		}
+		return new SuccessDataResult<List<JobAdvert>>
+		(this.jobAdvertDao.findAll(pageable).getContent(),"is ilanları geldi.");
+	}
 	
 	@Override
 	public DataResult<List<JobAdvert>> getAllSortedByActive() {
 		return new SuccessDataResult<List<JobAdvert>>
 		(this.jobAdvertDao.getByIsActive());
 	}
-
+	@Override
+	public DataResult<List<JobAdvert>> getAllByNotActive() {
+		return new SuccessDataResult<List<JobAdvert>>
+		(this.jobAdvertDao.getByIsNotActive());
+	}
 
 	@Override
 	public DataResult<List<JobAdvert>> getAllSortedByDate() {
@@ -59,13 +83,26 @@ public class JobAdvertManager implements JobAdvertService{
 	@Override
 	public Result updateById(int id) {
 		JobAdvert jobAdvertId=this.jobAdvertDao.findById(id).get();		
-		//System.out.println(jobAdvertId);
+		
 		jobAdvertId.setActive(true);
 		this.jobAdvertDao.save(jobAdvertId);
 		return new SuccessResult("iş ilanı aktifleştirildi.");
 	}
 
 
-	
+	@Override
+	public DataResult<List<JobAdvert>> getJobAdvertFilterDetails(String typeOfWork, String cityName) {
+		return new SuccessDataResult<List<JobAdvert>>
+		(this.jobAdvertDao.getJobAdvertFilterDetails(typeOfWork, cityName),"Data listelendi.");
+	}
 
+
+	@Override
+	public List<JobAdvert> search(String keyword) {
+		if (keyword!=null) {
+			return jobAdvertDao.search(keyword);
+		}
+		return jobAdvertDao.findAll();
+	}
+	
 }

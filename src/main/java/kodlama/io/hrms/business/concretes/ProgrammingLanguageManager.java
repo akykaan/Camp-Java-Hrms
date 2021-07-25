@@ -42,9 +42,11 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 
 	@Override
 	public Result addProgrammingLanguageForCandidate(CvWithProgrammingLanguageDto cvWithProgrammingLanguageDto,ProgrammingLanguage programmingLanguage) {
-		// 2.parametreden emin değilim
+		
 		programmingLanguage.setCv(this.cvService.getByCvId(cvWithProgrammingLanguageDto.getCvId()));
-		programmingLanguage.setProgrammingLanguage(programmingLanguage.getProgrammingLanguage());
+		programmingLanguage.setProgrammingLanguage(cvWithProgrammingLanguageDto.getProgrammingLanguage());
+		
+		
 		this.programmingLanguageDao.save(programmingLanguage);
 		return new SuccessResult("Yeni bir programlama dili cvye eklendi.");
 	}

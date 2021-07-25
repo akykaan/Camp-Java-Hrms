@@ -14,6 +14,8 @@ import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.dataAccess.abstracts.EmployerDao;
 import kodlama.io.hrms.entities.concretes.Employer;
+import kodlama.io.hrms.entities.concretes.User;
+import kodlama.io.hrms.entities.dtos.LoginDto;
 
 @Service
 public class EmployerManager implements EmployerService{
@@ -43,4 +45,26 @@ public class EmployerManager implements EmployerService{
 		(this.employerDao.findAll(),"Employer listelendi.");
 	}
 
+	@Override
+	public Result login(LoginDto loginDto) {
+		Employer employer=employerDao.findByEmail(loginDto.getEmail() );
+		if ( emailCheck(employer) && passwordCheck(loginDto, employer)) {
+			return new SuccessResult("giris yapıldı");
+		}
+		return new ErrorResult("mail veya sifre hatalı");
+	}
+	private boolean passwordCheck(LoginDto loginDto, Employer employer) {
+		if(!employer.getPassword().equals(loginDto.getPassword())) {
+			
+			return false;
+		}
+		return true;
+	}
+
+	private boolean emailCheck(Employer employer) {
+		if(employer==null) {
+			return false;
+		}
+		return true;
+	}
 }

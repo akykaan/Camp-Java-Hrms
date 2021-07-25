@@ -11,6 +11,7 @@ public interface JobExperienceService {
 	DataResult<List<JobExperience>> getAll();
 	Result add(JobExperience jobExperience);
 	
-	Result addJobExperienceForCandidate(CvWithJobExperienceDto cvWithJobExperienceDto,
-			JobExperience jobExperience);
+	Result addJobExperienceForCandidate(CvWithJobExperienceDto cvWithJobExperienceDto);
+	
+	DataResult<JobExperience> getById(int id);
 }

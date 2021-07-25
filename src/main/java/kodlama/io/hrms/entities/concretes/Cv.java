@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="cv")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobExperience","school"})
 public class Cv {
 	
 	@Id
@@ -48,58 +47,26 @@ public class Cv {
 	@Column(name="active")
 	private boolean active;
 	
-	@OneToMany(mappedBy = "cv")
 	@JsonIgnore
-	private List<JobExperience> jobExperience;
+	@OneToMany(mappedBy = "cv")	
+	private List<JobExperience> jobExperience;	
 	
-	//@OneToMany(mappedBy = "jobExperiences")
-	///private List<JobExperience> 
-	
-	@OneToMany(mappedBy = "cv")
-	@JsonIgnore //bunu koyunca swagger kısmında gözükmez
+	@JsonIgnore
+	@OneToMany(mappedBy = "cv")	 
 	private List<School> school;
 	
-	@OneToMany(mappedBy = "cv")
 	@JsonIgnore
+	@OneToMany(mappedBy = "cv")	
 	private List<ProgrammingLanguage> programmingLanguage;
 	
-	@OneToMany(mappedBy = "cv")
 	@JsonIgnore
+	@OneToMany(mappedBy = "cv")	
 	private List<Language> language;
 	
-	@OneToOne(mappedBy = "cv")
 	@JsonIgnore
+	@OneToOne(mappedBy = "cv")	
 	private Image image;
 	
-	//@ManyToOne
-	//@JoinColumn(name="language_id")
-	//private List<Language> languageId;
-	
-	//@OneToMany(mappedBy = "cv")
-	//private List<Candidate> candidate;	
-	
-	//@ManyToOne
-	//@JoinColumn(name="language_id")
-	//private Language language;
-	
-	//@ManyToOne
-	/*@JoinColumn(name="job_experience_id")
-	private JobExperience jobExperience;
-	
-	@ManyToOne()
-	@JoinColumn(name="programming_language_id")
-	private ProgrammingLanguage programmingLanguage;
-	
-	@OneToOne()
-	@JoinColumn(name="candidate_id")
-	private Candidate candidateId;
-	
-	@ManyToOne()
-	@JoinColumn(name="school_id")
-	private School school;
-	
-	@OneToMany(mappedBy = "cvId")
-	private List<School> schoolCvId;*/
 	
 	
 }

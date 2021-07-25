@@ -3,6 +3,7 @@ package kodlama.io.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import kodlama.io.hrms.entities.dtos.CvWithSchoolDto;
 
 @RestController
 @RequestMapping("/api/school")
+@CrossOrigin
 public class SchoolController {
 
 	private SchoolService schoolService;
@@ -38,8 +40,9 @@ public class SchoolController {
 	} 
 	
 	@PostMapping("/addschoolforcandidatecv")
-	public Result addSchoolForCandidateCv(@RequestBody CvWithSchoolDto cvWithSchoolDto,
-			School school) {
+	public Result addSchoolForCandidateCv(@RequestBody CvWithSchoolDto cvWithSchoolDto,School school) {
+		System.out.println("api:"+cvWithSchoolDto.getEndYear());
+		System.out.println("api:"+cvWithSchoolDto.getDepartmentName());
 		return this.schoolService.addSchoolForCandidate(cvWithSchoolDto, school);
 	}
 	

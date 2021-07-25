@@ -6,5 +6,6 @@ import kodlama.io.hrms.entities.concretes.JobExperience;
 
 public interface JobExperienceDao extends JpaRepository<JobExperience, Integer>{
 
+	JobExperience getById(int id);
 	
 }

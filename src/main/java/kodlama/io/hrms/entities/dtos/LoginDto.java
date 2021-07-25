@@ -5,11 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class CvWithProgrammingLanguageDto {
-
-	private int cvId;
-	private String programmingLanguage;
-	//private int languageLevel;
+@NoArgsConstructor
+public class LoginDto {
+	private String email;
+	private String password;
 }

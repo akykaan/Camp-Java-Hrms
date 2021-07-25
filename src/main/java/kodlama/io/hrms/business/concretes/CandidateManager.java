@@ -60,6 +60,12 @@ public class CandidateManager implements CandidateService{
 		return new SuccessDataResult<Candidate>
 		(this.candidateDao.getById(id));
 	}
+
+	@Override
+	public DataResult<Candidate> getByFirstNameAndPassword(String firstName, int password) {
+		return new SuccessDataResult<Candidate>
+		(this.candidateDao.getByFirstNameAndPassword(firstName, password));
+	}
 }
 
 

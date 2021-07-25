@@ -24,14 +24,15 @@ public class ProgrammingLanguage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-
-	@Column(name="programming_language")
-	private String programmingLanguage;
 	
 	@ManyToOne()
 	@JoinColumn(name="cv_id")
 	private Cv cv;
+
+	@Column(name="programming_language")
+	private String programmingLanguage;
 	
-	//@OneToMany(mappedBy = "programmingLanguage",cascade = CascadeType.ALL)
-	//private List<Cv> cv;
+	
+	
+	
 }

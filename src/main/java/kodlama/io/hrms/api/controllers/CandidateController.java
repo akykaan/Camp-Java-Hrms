@@ -38,4 +38,9 @@ public class CandidateController {
 		return this.candidateService.add(candidate);
 	}
 	
+	@GetMapping("/getbyfirstnameandpassword")
+	public DataResult<Candidate> getByFirstNameAndPassword(String firstName,int password){
+		return this.candidateService.getByFirstNameAndPassword(firstName, password);
+	}
+	
 }

@@ -40,10 +40,11 @@ public class JobExperienceManager implements JobExperienceService{
 		return new SuccessResult("Yeni is tecrübesi eklendi.");
 	}
 
+	
 	@Override
-	public Result addJobExperienceForCandidate(CvWithJobExperienceDto cvWithJobExperienceDto,
-			JobExperience jobExperience) {
+	public Result addJobExperienceForCandidate(CvWithJobExperienceDto cvWithJobExperienceDto) {
 		
+		JobExperience jobExperience = new JobExperience();
 		jobExperience.setCv(this.cvService.getByCvId(cvWithJobExperienceDto.getCvId()));
 		jobExperience.setWorkplaceName(cvWithJobExperienceDto.getWorkPlaceName());
 		jobExperience.setPosition(cvWithJobExperienceDto.getPosition());
@@ -52,5 +53,11 @@ public class JobExperienceManager implements JobExperienceService{
 		this.jobExperienceDao.save(jobExperience);
 		return new SuccessResult("yeni iş deneyimi eklendi.");
 		
+	}
+
+	@Override
+	public DataResult<JobExperience> getById(int id) {
+		return new SuccessDataResult<JobExperience>
+		(this.jobExperienceDao.getById(id),"data listelendi.");
 	}
 }

@@ -10,11 +10,17 @@ public interface JobAdvertService {
 	Result add(JobAdvert jobAdvert);
 	
 	DataResult<List<JobAdvert>> getAll();
+	DataResult<List<JobAdvert>> getAll(int pageNo, int pageSize);
+	DataResult<List<JobAdvert>> getAllKeywordAndPageable(String keyword, int pageNo, int pageSize);
 	DataResult<List<JobAdvert>> getAllSortedByActive();
 	DataResult<List<JobAdvert>> getAllSortedByDate();
+	DataResult<List<JobAdvert>> getAllByNotActive();
 	
-	//Result updateById(JobAdvert jobAdvert,int id);
+	DataResult<List<JobAdvert>> getJobAdvertFilterDetails(String typeOfWork,String cityName);
+	
 	Result updateById(int id);
+	
+	List<JobAdvert> search(String keyword);
 	
 	
 }
