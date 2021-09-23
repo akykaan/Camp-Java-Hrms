@@ -3,6 +3,7 @@ package kodlama.io.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +15,11 @@ import kodlama.io.hrms.business.abstracts.CvService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.Cv;
+import kodlama.io.hrms.entities.dtos.CvDto;
 
 @RestController
 @RequestMapping("/api/cv")
+@CrossOrigin
 public class CvController {
 
 	private CvService cvService;
@@ -42,4 +45,10 @@ public class CvController {
 	public DataResult<Cv> getById(@RequestParam int id){
 		return this.cvService.getById(id);
 	}
+	
+	@PostMapping("/addCv")
+	public Result addCv(@RequestBody CvDto cvDto) {
+		return cvService.addCv(cvDto);
+	}
+	
 }

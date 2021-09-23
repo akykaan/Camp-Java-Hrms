@@ -50,7 +50,10 @@ public class SchoolManager implements SchoolService{
 		school.setSchoolName(cvWithSchoolDto.getSchoolName());
 		school.setDepartmentName(cvWithSchoolDto.getDepartmentName());
 		school.setStartYear(cvWithSchoolDto.getStartYear());
-		school.setEndYear(cvWithSchoolDto.getStartYear());
+		school.setEndYear(cvWithSchoolDto.getEndYear());
+		
+		System.out.println("school:"+cvWithSchoolDto.getStartYear());
+		System.out.println("school:"+cvWithSchoolDto.getEndYear());
 		this.schoolDao.save(school);
 		return new SuccessResult("Yeni bir okul eklendi.");
 	}

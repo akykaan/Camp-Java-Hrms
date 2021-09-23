@@ -3,6 +3,7 @@ package kodlama.io.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import kodlama.io.hrms.entities.dtos.CvWithProgrammingLanguageDto;
 
 @RestController
 @RequestMapping("/api/programming_language")
+@CrossOrigin
 public class ProgrammingLanguageController {
 
 	private ProgrammingLanguageService programmingLanguageService;
@@ -37,7 +39,7 @@ public class ProgrammingLanguageController {
 		return this.programmingLanguageService.add(programmingLanguage);
 	} 
 	
-	@PostMapping("/addlrogrammingLanguageforcandidatecv")
+	@PostMapping("/addprogrammingLanguageforcandidatecv")
 	public Result addProgrammingLanguageForCandidateCv(@RequestBody CvWithProgrammingLanguageDto cvWithProgrammingLanguageDto,
 			ProgrammingLanguage programminglanguage) {
 		return this.programmingLanguageService.addProgrammingLanguageForCandidate

@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="job_experience")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler",""})
 
 public class JobExperience {
 	
@@ -46,9 +48,6 @@ public class JobExperience {
 	@JsonFormat(shape = JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd")
 	@Column(name="end_year")
 	private LocalDate endYear;	
-	
-	//@OneToMany(mappedBy = "jobExperience",cascade = CascadeType.ALL)
-	//private List<Cv> cv;
 	
 	
 }

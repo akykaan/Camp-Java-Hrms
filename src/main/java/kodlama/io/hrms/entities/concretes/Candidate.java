@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
 @Table(name="candidates")
-
 public class Candidate extends User{
 	
 	@Id

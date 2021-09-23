@@ -41,11 +41,4 @@ public class School {
 	@Column(name="end_year")
 	private String endYear;
 
-	//@ManyToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name="university_id")
-	//private University university;	
-	
-	//@OneToMany(mappedBy = "school",cascade = CascadeType.ALL)
-	//private List<Cv> cv;
-	
 }
